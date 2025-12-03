@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Dashboard</title>
+</head>
+<body>
+
+    <h1>Teacher Dashboard</h1>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Student</th>
+            <th>Class</th>
+            <th>Subject</th>
+            <th>Topic</th>
+            <th>Score</th>
+            <th>Typing Speed</th>
+            <th>Time Taken</th>
+            <th>Fatigue Level</th>
+            <th>Attention Level</th>
+        </tr>
+
+        {% for r in results %}
+        <tr>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td>{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+            <td>{{ r[5] }}</td>
+            <td>{{ r[6] }} sec</td>
+            <td>{{ r[7] }}</td>
+            <td>{{ r[8] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

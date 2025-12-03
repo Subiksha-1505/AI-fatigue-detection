@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+
+    <script>
+        let startTime = Date.now();
+        let keystrokes = 0;
+
+        // Track typing speed
+        function trackTyping() {
+            keystrokes++;
+        }
+
+        // Before submitting, send data to backend
+        function submitQuiz() {
+            let endTime = Date.now();
+            let timeTaken = (endTime - startTime) / 1000; // seconds
+
+            document.getElementById("typing_speed").value = keystrokes;
+            document.getElementById("time_taken").value = timeTaken;
+
+            return true;
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <h2>Quiz: {{ selected_subject }} → {{ selected_topic }}</h2>
+    <p>Class: {{ selected_class }}</p>
+
+    <form action="/submit_quiz" method="POST" onsubmit="return submitQuiz()">
+
+        {% for q in questions %}
+            <p><b>Q{{ loop.index }}.</b> {{ q }}</p>
+            <input onkeydown="trackTyping()" type="text" name="answer{{ loop.index }}" required><br><br>
+        {% endfor %}
+
+        <!-- Hidden fields for behaviour tracking -->
+        <input type="hidden" id="typing_speed" name="typing_speed" value="">
+        <input type="hidden" id="time_taken" name="time_taken" value="">
+
+        <input type="hidden" name="class" value="{{ selected_class }}">
+        <input type="hidden" name="subject" value="{{ selected_subject }}">
+        <input type="hidden" name="topic" value="{{ selected_topic }}">
+
+        <button type="submit">Submit Quiz</button>
+
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Topic</title>
+</head>
+
+<body>
+    <h2>Select Topic</h2>
+
+    <p>Class: {{ selected_class }}</p>
+    <p>Subject: {{ selected_subject }}</p>
+
+    <form action="/start_quiz" method="POST">
+        <input type="hidden" name="class" value="{{ selected_class }}">
+        <input type="hidden" name="subject" value="{{ selected_subject }}">
+
+        <label>Select Topic:</label>
+        <select name="topic" required>
+            {% for t in topics %}
+                <option value="{{ t }}">{{ t }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+        <button type="submit">Start Quiz</button>
+    </form>
+
+</body>
+</html>

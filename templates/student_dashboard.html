@@ -1,0 +1,27 @@
+<h2>Select Your Class & Subject</h2>
+
+<form action="" method="GET">
+    <label>Select Class:</label>
+    <select id="class_select">
+        {% for c in classes %}
+            <option>{{ c }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Select Subject:</label>
+    <select id="subject_select">
+        {% for s in subjects %}
+            <option>{{ s }}</option>
+        {% endfor %}
+    </select>
+
+    <button onclick="goToQuiz()">Start Quiz</button>
+</form>
+
+<script>
+function goToQuiz() {
+    let cls = document.getElementById("class_select").value;
+    let sub = document.getElementById("subject_select").value;
+    window.location.href = `/quiz/${cls}/${sub}`;
+}
+</script>
